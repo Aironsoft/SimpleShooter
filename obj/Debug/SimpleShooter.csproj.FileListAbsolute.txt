@@ -1,0 +1,9 @@
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\bin\Debug\SimpleShooter.exe.config
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\bin\Debug\SimpleShooter.exe
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\bin\Debug\SimpleShooter.pdb
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\obj\Debug\SimpleShooter.csprojResolveAssemblyReference.cache
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\obj\Debug\SimpleShooter.Properties.Resources.resources
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\obj\Debug\SimpleShooter.csproj.GenerateResource.Cache
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\obj\Debug\SimpleShooter.exe
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\obj\Debug\SimpleShooter.pdb
+C:\Users\Айрон\Documents\Visual Studio 2015\Projects\SimpleShooter\SimpleShooter\obj\Debug\SimpleShooter.Form.resources
