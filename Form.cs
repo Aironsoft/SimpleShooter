@@ -486,6 +486,8 @@ namespace SimpleShooter
                 foreach (Player pl in players)//то они по порядку ходят
                 {
                     Turn(pl);
+                    if (players.Count == 0)
+                        break;
                     tableLayoutPanel.Controls.Add(pl.Picture, pl.X, pl.Y);
                 }
 
