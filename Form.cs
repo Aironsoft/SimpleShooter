@@ -254,14 +254,14 @@ namespace SimpleShooter
                 }
 
 
-                if (pl.X == 19)
+                if (pl.X == 19)//если игрок на правой границе
                 {
                     for (int j = 0; j < 3; j++)
                     {
                         variousSteps[2, j] = false;
                     }
                 }
-                else if (pl.X == 0)
+                else if (pl.X == 0)//если игрок на левой границе
                 {
                     for (int j = 0; j < 3; j++)
                     {
@@ -269,14 +269,14 @@ namespace SimpleShooter
                     }
                 }
 
-                if (pl.Y == 19)
+                if (pl.Y == 19)//если игрок на нижней границе
                 {
                     for (int i = 0; i < 3; i++)
                     {
                         variousSteps[i, 2] = false;
                     }
                 }
-                else if (pl.Y == 0)
+                else if (pl.Y == 0)//если игрок на верхней границе
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -399,9 +399,9 @@ namespace SimpleShooter
                     }
                 }
 
-                if (!isBusy)
-                    userMoveRectangles.Add(CellCoords(user.Y + user.NextPosY, user.X + user.NextPosX));
-                else
+                if (!isBusy)//если выбранная клетка не занята
+                    userMoveRectangles.Add(CellCoords(user.Y + user.NextPosY, user.X + user.NextPosX));//отметить её в траектории движения
+                else//иначе никуда не идти
                 {
                     user.NextPosY = user.NextPosX = 0;
                 }
@@ -429,17 +429,15 @@ namespace SimpleShooter
 
         public void AIActions()
         {
-            tableLayoutPanel.Visible = false;
-
-            if(user.NextMoveType==MoveType.Move)
+            if(user.NextMoveType==MoveType.Move)//если пользователь ходит
                 tableLayoutPanel.Controls.Add(user.Picture, user.X, user.Y);
-            else
+            else//если пользователь стреляет
             {
-                Coords C = new Coords();
+                Coords C = new Coords();//координаты цели выстрела
                 C.X = user.X + user.NextPosX;
                 C.Y = user.Y + user.NextPosY;
 
-                if (PlayerCoords.ContainsKey(C))
+                if (PlayerCoords.ContainsKey(C))//если есть игрок с такими координатами
                 {
                     Player player = PlayerCoords[C];
 
@@ -484,19 +482,13 @@ namespace SimpleShooter
             userShotRectangles.Clear();
             shotRadiusRectangles.Clear();
 
-            if (players != null)
-                foreach (Player pl in players)
+            if (players != null)//если есть игроки
+                foreach (Player pl in players)//то они по порядку ходят
                 {
                     Turn(pl);
-                    if (players.Count == 0)
-                        break;
                     tableLayoutPanel.Controls.Add(pl.Picture, pl.X, pl.Y);
                 }
 
-            tableLayoutPanel.Visible = true;
-
-            //DrawElements(tableLayoutPanel, new PaintEventArgs(grafx.Graphics, tableLayoutPanel.Bounds));
-            //grafx.Render();
         }
 
 
@@ -518,19 +510,21 @@ namespace SimpleShooter
                 g.Clear(Color.AliceBlue);
 
                 DrawGrid(g);
-                Pen p = new Pen(Color.Black, 3);
 
-                foreach (var rectangle in shotRadiusRectangles)
+                Pen p = new Pen(Color.Black, 3);
+                foreach (var rectangle in shotRadiusRectangles)//отрисовка радиуса поражения
                 {
                     g.DrawRectangle(p, rectangle);
                 }
+
                 p = new Pen(Color.Green, 3);
-                foreach (var rectangle in userMoveRectangles)
+                foreach (var rectangle in userMoveRectangles)//отрисовка траектории движения
                 {
                     g.DrawRectangle(p, rectangle);
                 }
+
                 p = new Pen(Color.Red, 3);
-                foreach (var rectangle in userShotRectangles)
+                foreach (var rectangle in userShotRectangles)//отрисовка траектории атаки
                 {
                     g.DrawRectangle(p, rectangle);
                 }
@@ -716,7 +710,6 @@ namespace SimpleShooter
                 if (PlayerCoords.ContainsKey(C))
                 {
                     Player player = PlayerCoords[C];
-
                     shotRadiusRectangles=GetShotRadiusRectangles(player);
                 }
                 else if(user.X==C.X && user.Y == C.Y)//если пользовательский игрок имеет такие координаты
