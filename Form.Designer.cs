@@ -304,6 +304,7 @@
             this.btEndsTurn.Text = "Конец хода";
             this.btEndsTurn.UseVisualStyleBackColor = true;
             this.btEndsTurn.Visible = false;
+            this.btEndsTurn.Enabled = false;
             this.btEndsTurn.Click += new System.EventHandler(this.AIActions);
             // 
             // Form

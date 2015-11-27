@@ -192,7 +192,6 @@ namespace SimpleShooter
             context = BufferedGraphicsManager.Current;
             grafx = context.Allocate(tableLayoutPanel.CreateGraphics(), new Rectangle(0, 0, tableLayoutPanel.Width, tableLayoutPanel.Height));
 
-
             tableLayoutPanel.MouseClick += user.MouseClick;
             user.mapX = MapX2Cell;//привязка для UserPlayer
             user.mapY = MapY2Cell;
@@ -202,6 +201,19 @@ namespace SimpleShooter
             user.endStep = AIActions;
 
             gameIsRunning = true;
+        }
+
+
+        /// <summary>
+        /// Приводит игру в предстартовое состояние
+        /// </summary>
+        public void EndGame()
+        {
+            tableLayoutPanel.MouseClick -= user.MouseClick;
+            tableLayoutPanel.Controls.Clear();
+            players.Clear();
+            PlayerCoords.Clear();
+            gameIsRunning = false;
         }
 
 
@@ -223,7 +235,7 @@ namespace SimpleShooter
                     DP.Y = Math.Sign(DP.Y) * (pl.Weapon.Radius - 1);
                 }
             }
-            else
+            else//если атака идёт в сторону
             {
                 if (Math.Abs(DP.X) > pl.Weapon.Radius || Math.Abs(DP.Y) > pl.Weapon.Radius)
                 {
@@ -236,11 +248,8 @@ namespace SimpleShooter
             {
 
                 MessageBox.Show("Вы проиграли! Вас убил игрок "+pl.Name+".");
-                
-                tableLayoutPanel.Controls.Clear();
-                players.Clear();
-                PlayerCoords.Clear();
-                gameIsRunning = false;
+
+                EndGame();
             }
             else//тогда ходим
             {
@@ -437,6 +446,8 @@ namespace SimpleShooter
                 C.X = user.X + user.NextPosX;
                 C.Y = user.Y + user.NextPosY;
 
+                //if(!IsBusy(C))//если 
+
                 if (PlayerCoords.ContainsKey(C))//если есть игрок с такими координатами
                 {
                     Player player = PlayerCoords[C];
@@ -459,10 +470,8 @@ namespace SimpleShooter
                     if (players.Count == 0)//если противников не осталось
                     {
                         MessageBox.Show("Вы выиграли!");
-                        tableLayoutPanel.Controls.Clear();
-                        players.Clear();
-                        PlayerCoords.Clear();
-                        gameIsRunning = false;
+
+                        EndGame();
 
                         return;
                     }

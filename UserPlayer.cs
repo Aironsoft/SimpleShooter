@@ -62,7 +62,7 @@ namespace SimpleShooter
                         NextPosY = 0;
                     }
 
-                    if (selectedStep.X == NextPosX && selectedStep.Y == NextPosY)
+                    if (selectedStep.X == NextPosX && selectedStep.Y == NextPosY)//если ход подтверждён
                     {
                         selectedStep.X = 21;
                         selectedStep.Y = 21;
@@ -121,10 +121,20 @@ namespace SimpleShooter
                         }
                         else
                         {
-                            selectedStep.X = NextPosX;
-                            selectedStep.Y = NextPosY;
+                            Coords Aim = new Coords();
+                            Aim.X = X + NextPosX;
+                            Aim.Y = Y + NextPosY;
+                            if (isBusy(Aim))//если для атаки выбрано непустое место
+                            {
+                                selectedStep.X = NextPosX;
+                                selectedStep.Y = NextPosY;
 
-                            step(this);
+                                step(this);
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
                     }
 
